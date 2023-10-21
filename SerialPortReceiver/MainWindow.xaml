@@ -1,12 +1,66 @@
-﻿<Window x:Class="SerialPortReceiver.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SerialPortReceiver"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+﻿<Window
+    x:Class="SerialPortReceiver.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="受信 ⇒ 送信"
+    Width="1050"
+    Height="900"
+    Closed="Window_Closed"
+    FontFamily="HackGen"
+    FontSize="20"
+    mc:Ignorable="d">
+    <DockPanel LastChildFill="False">
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+            <Label Content="COMポート:" />
+            <ComboBox x:Name="ComPort" />
+            <Button
+                x:Name="ComOpen"
+                Click="Open_Click"
+                Content="接続" />
+            <Button
+                x:Name="ComClose"
+                Click="Close_Click"
+                Content="切断"
+                IsEnabled="False" />
+            <CheckBox
+                x:Name="OneShot"
+                VerticalAlignment="Center"
+                Checked="OneShot_Checked"
+                Content="ワンショット"
+                Unchecked="OneShot_Unchecked" />
+            <Button
+                x:Name="ComSend"
+                Click="Send_Click"
+                Content="送信"
+                IsEnabled="False" />
+            <RadioButton
+                x:Name="ByteR"
+                VerticalAlignment="Center"
+                Content="Byte"
+                IsChecked="True" />
+            <RadioButton
+                x:Name="StringR"
+                VerticalAlignment="Center"
+                Content="String"
+                IsChecked="False" />
+        </DockPanel>
+        <DockPanel Background="Gold">
+            <Label Content="受信データ" DockPanel.Dock="Top" />
+            <Label x:Name="ReceiveHeader" DockPanel.Dock="Top" />
+            <TextBox
+                x:Name="ReceiveData"
+                Background="Gold"
+                IsReadOnly="True" />
+        </DockPanel>
+        <DockPanel Background="Turquoise">
+            <Label Content="送信データ" DockPanel.Dock="Top" />
+            <Label x:Name="SendHeader" DockPanel.Dock="Top" />
+            <TextBox
+                x:Name="SendData"
+                AcceptsReturn="True"
+                Background="Turquoise" />
+        </DockPanel>
+    </DockPanel>
 </Window>
